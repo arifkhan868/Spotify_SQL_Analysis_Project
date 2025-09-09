@@ -115,3 +115,43 @@ FROM spotify.song
 GROUP BY artist
 ORDER BY total_tracks DESC;
 
+### Medium Level
+```sql
+-- Q6: Calculate the average danceability of tracks in each album
+SELECT album, ROUND(AVG(danceability), 2) AS avg_danceability
+FROM spotify.song
+GROUP BY album
+ORDER BY avg_danceability DESC;
+
+-- Q7: Find the top 5 tracks with the highest energy
+SELECT track, artist, energy
+FROM spotify.song
+ORDER BY energy DESC
+LIMIT 5;
+
+-- Q8: List all tracks with their views and likes where official_video = TRUE
+SELECT track, SUM(views) AS total_views, SUM(likes) AS total_likes
+FROM spotify.song
+WHERE official_video = TRUE
+GROUP BY track
+ORDER BY total_views DESC;
+
+-- Q9: Total views per album
+SELECT album, SUM(views) AS total_views
+FROM spotify.song
+GROUP BY album
+ORDER BY total_views DESC;
+
+-- Q10: Tracks streamed more on Spotify than YouTube
+WITH streamed AS (
+    SELECT track,
+           COALESCE(SUM(CASE WHEN most_played_on = 'Spotify' THEN stream END), 0) AS spotify_stream,
+           COALESCE(SUM(CASE WHEN most_played_on = 'Youtube' THEN stream END), 0) AS youtube_stream
+    FROM spotify.song
+    GROUP BY track
+)
+SELECT track, spotify_stream, youtube_stream
+FROM streamed
+WHERE spotify_stream > youtube_stream
+  AND youtube_stream <> 0;
+
