@@ -154,4 +154,42 @@ SELECT track, spotify_stream, youtube_stream
 FROM streamed
 WHERE spotify_stream > youtube_stream
   AND youtube_stream <> 0;
+```
+### Advanced Level
+```sql
+-- Q11: Top 3 most-viewed tracks for each artist using window functions
+SELECT *
+FROM (
+    SELECT artist, track, SUM(views) AS total_views,
+           RANK() OVER(PARTITION BY artist ORDER BY SUM(views) DESC) AS rank
+    FROM spotify.song
+    GROUP BY artist, track
+) AS ranked
+WHERE rank <= 3;
+
+-- Q12: Tracks where liveness score is above average
+SELECT track, artist, liveness
+FROM spotify.song
+WHERE liveness > (SELECT AVG(liveness) FROM spotify.song);
+
+-- Q13: Difference between highest and lowest energy per album
+WITH energy_diff AS (
+    SELECT album, MAX(energy) AS max_energy, MIN(energy) AS min_energy
+    FROM spotify.song
+    GROUP BY album
+)
+SELECT album, max_energy, min_energy, max_energy - min_energy AS energy_range
+FROM energy_diff
+ORDER BY energy_range DESC;
+
+-- Q14: Cumulative sum of likes ordered by views
+WITH likes_summary AS (
+    SELECT track, SUM(likes) AS total_likes, SUM(views) AS total_views
+    FROM spotify.song
+    GROUP BY track
+)
+SELECT track, total_likes,
+       SUM(total_likes) OVER(ORDER BY total_views DESC) AS cumulative_likes
+FROM likes_summary;
+
 
