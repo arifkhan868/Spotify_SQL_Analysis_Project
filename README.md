@@ -191,5 +191,11 @@ SELECT track, total_likes,
        SUM(total_likes) OVER(ORDER BY total_views DESC) AS cumulative_likes
 FROM likes_summary;
 ```
+---
+## Insights & Observations
 
+   - Tracks with the highest streams are mostly singles or hits from popular albums.
+   - Albums with higher danceability tend to receive more engagement.
+   - Using window functions and CTEs makes ranking and cumulative metrics easier to calculate.
+   -  Spotify streams are often higher than YouTube streams for artists who focus on music platforms.
 
