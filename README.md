@@ -13,7 +13,7 @@ This project involves analyzing a Spotify dataset with various attributes about 
 ```sql
 -- create table
 DROP TABLE IF EXISTS spotify;
-CREATE TABLE spotify (
+CREATE TABLE spotify.song (
     artist VARCHAR(255),
     track VARCHAR(255),
     album VARCHAR(255),
