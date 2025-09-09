@@ -84,3 +84,5 @@ After the data is inserted, various SQL queries can be written to explore and an
 2. Write a query to find tracks where the liveness score is above the average.
 3. **Use a `WITH` clause to calculate the difference between the highest and lowest energy values for tracks in each album.**
 4. Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
+---
+### 14 Practice Questions
