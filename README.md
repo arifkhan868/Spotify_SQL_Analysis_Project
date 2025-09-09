@@ -86,4 +86,32 @@ After the data is inserted, various SQL queries can be written to explore and an
 4. Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
 ---
 ### 14 Practice Questions
----
+
+### Easy Level
+```sql
+-- Q1: Retrieve tracks with more than 1 billion streams
+SELECT track, artist, stream
+FROM spotify.song
+WHERE stream > 1000000000;
+
+-- Q2: List all albums along with their respective artists
+SELECT DISTINCT artist, album
+FROM spotify.song
+ORDER BY artist, album;
+
+-- Q3: Total number of comments for licensed tracks
+SELECT SUM(comments) AS total_comments
+FROM spotify.song
+WHERE licensed = TRUE;
+
+-- Q4: Find all tracks that belong to the album type 'single'
+SELECT track, artist, album
+FROM spotify.song
+WHERE album_type = 'single';
+
+-- Q5: Count the total number of tracks by each artist
+SELECT artist, COUNT(*) AS total_tracks
+FROM spotify.song
+GROUP BY artist
+ORDER BY total_tracks DESC;
+
