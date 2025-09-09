@@ -86,4 +86,4 @@ After the data is inserted, various SQL queries can be written to explore and an
 4. Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
 ---
 ### 14 Practice Questions
---
+---
