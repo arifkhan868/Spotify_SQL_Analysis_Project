@@ -198,4 +198,9 @@ FROM likes_summary;
    - Albums with higher danceability tend to receive more engagement.
    - Using window functions and CTEs makes ranking and cumulative metrics easier to calculate.
    -  Spotify streams are often higher than YouTube streams for artists who focus on music platforms.
+---
+## Key Takeaways
 
+  -  SQL skills demonstrated: aggregations, filtering, CTEs, window functions, conditional logic
+  -  Experience handling real-world dataset metrics like streams, views, likes, and liveness
+  -  The project can be extended with joins, JSON/array handling, and visualization tools
