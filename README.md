@@ -114,7 +114,7 @@ SELECT artist, COUNT(*) AS total_tracks
 FROM spotify.song
 GROUP BY artist
 ORDER BY total_tracks DESC;
-
+```
 ### Medium Level
 ```sql
 -- Q6: Calculate the average danceability of tracks in each album
