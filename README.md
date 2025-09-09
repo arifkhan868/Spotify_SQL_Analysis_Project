@@ -191,5 +191,6 @@ WITH likes_summary AS (
 SELECT track, total_likes,
        SUM(total_likes) OVER(ORDER BY total_views DESC) AS cumulative_likes
 FROM likes_summary;
+```
 
 
